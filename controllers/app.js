@@ -5,15 +5,15 @@ myApp.config(function($routeProvider) {
 
   .when('/', {
     templateUrl: 'templates/menu.html',
-    controller: 'MainCtrl'
-    // controllerAs: 'main'
+    controller: 'MainCtrl',
+    controllerAs: 'main'
   })
 
-  .when('/score', {
+  .when('/score/:uniqueID', {
     // url: '/score',
     templateUrl: 'templates/score.html',
-    controller: 'SecondCtrl'
-    // controllerAs: 'info'
+    controller: 'SecondCtrl',
+    controllerAs: 'info'
   });
   // $urlRouterProvider.otherwise('/');
 });

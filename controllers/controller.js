@@ -1,36 +1,36 @@
-myApp.controller('MainCtrl', function($scope, $http, cricService) {
+myApp.controller('MainCtrl', function($scope, $http, $log) {
 
   $scope.dt = new Date();
-  // var vm = this;
-  $scope.getData = function() {
-   $http({method : 'GET',url : 'http://cricapi.com/api/cricket'})
-   .success(function(data) {
-     $scope.group = data;
-     console.log($scope.group);
-   });
-  };
-  $scope.getData();
-
-  $scope.cricFn = function(id){
-    cricService.unique_id = id;
-  };
-});
-
-myApp.controller('SecondCtrl', function($scope, cricService, $http){
-  
-  $scope.dt = new Date();
-  $scope.unique_id = cricService.unique_id;
-  console.log($scope.unique_id);
-  $scope.getData = function(id){
-    $http({method: 'GET', url: 'http://cricapi.com/api/cricketScore?unique_id='+id})
-    .success(function(data){
-      $scope.item = data;
-      console.log($scope.item);
+  var vm = this;
+  vm.getData = function() {
+    $http({method : 'GET',url : 'http://cricapi.com/api/cricket'})
+    .success(function(content) {
+     vm.group = content.data;
+     console.log(vm.group);
+     // group: content.group
+    }).catch(function(error){
+      $log.error('failure loading', error);
     });
   };
-  $scope.getData($scope.unique_id);
+  vm.getData();
 });
 
-myApp.service('cricService', function(){
-  this.unique_id = null;
+myApp.controller('SecondCtrl', function($scope, $http, $routeParams){
+  
+  $scope.dt = new Date();
+  var vm = this;
+  var id = $routeParams.uniqueID;
+  console.log(id);
+  vm.getData = function(id){
+    $http({method: 'GET', url: 'http://cricapi.com/api/cricketScore?unique_id='+id })
+    .success(function(data){
+      vm.item = data;
+      console.log(vm.item);
+    });
+  };
+  vm.getData(id);
 });
+
+// myApp.service('cricService', function(){
+//   this.unique_id = null;
+// });

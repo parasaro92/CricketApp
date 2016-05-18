@@ -6,11 +6,17 @@
 <br><br>
 <div class="row">
   <div class="container">
-
-    <div class="list-group" ng-repeat= "item in group.data">
-      <a ng-href="#/score" id="{{item.unique_id}}" ng-click="cricFn(item.unique_id)">
+    <div class="list-group" ng-repeat= "item in main.group">
+    <div class="col-md-6 col-sm-6">
+      <a ng-href="#/score/{{item.unique_id}}" id="{{item.unique_id}}" ng-click="">
         <div class="list-group-item">{{ item.title }}</div>
       </a>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <!-- <a ng-href="#/score/{{item.unique_id}}" id="{{item.unique_id}}" ng-click=""> -->
+        <div class="list-group-item">{{ item.description }}</div>
+      </a>
+    </div>
     </div>
   </div>
 </div>
