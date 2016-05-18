@@ -1,0 +1,16 @@
+<h1 class="text-center">Schedule</h1>
+<h4 class="text-center">
+  {{dt | date : 'fullDate'}}
+</h4>
+
+<br><br>
+<div class="row">
+  <div class="container">
+
+    <div class="list-group" ng-repeat= "item in group.data">
+      <a ng-href="#/score" id="{{item.unique_id}}" ng-click="cricFn(item.unique_id)">
+        <div class="list-group-item">{{ item.title }}</div>
+      </a>
+    </div>
+  </div>
+</div>
